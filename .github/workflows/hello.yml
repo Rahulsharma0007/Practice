@@ -18,7 +18,7 @@ jobs:
           run: echo "Hello Dost $USER"
        
   greet1:
-      if: inputs.environment == "prod"
+      if: inputs.environments == 'prod'
       needs: [greet]
       runs-on: ubuntu-latest
       steps:
