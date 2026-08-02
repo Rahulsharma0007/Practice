@@ -15,4 +15,4 @@ jobs:
       runs-on: ubuntu-latest
       steps:
         - name: Say hello to ubuntu
-          run: Docker --version && python --version
+          run: docker --version && python --version
