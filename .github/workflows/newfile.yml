@@ -1,0 +1,12 @@
+name: newfile
+on:
+  workflow_dispatch: 
+
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+    steps:
+      - name: code get
+        uses: actions/workflow@v4
+
+      - name: page creation
