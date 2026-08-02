@@ -2,7 +2,7 @@ name: Hello World
 
 on:
   push:
-    branches: [main]
+    branches: [master]
 
 jobs:
   greet:
@@ -14,5 +14,5 @@ jobs:
   greet1:
       runs-on: ubuntu-latest
       steps:
-        - name: Say hello to users
+        - name: Say hello to ubuntu
           run: Docker --version && python --version
