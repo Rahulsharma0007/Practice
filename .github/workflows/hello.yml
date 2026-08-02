@@ -10,3 +10,8 @@ jobs:
         - name: Say hello to users
           run: echo "Hello Dost $USER"
        
+  greet1:
+      runs-on: ubuntu-latest
+      steps:
+        - name: Say hello to users
+          run: Docker --version && python --version
