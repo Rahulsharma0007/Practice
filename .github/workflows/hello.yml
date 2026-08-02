@@ -2,6 +2,13 @@ name: Hello World
 
 on:
   workflow_dispatch: 
+    inputs:
+     environments:
+        type: choice
+        options:
+        - dev
+        - prod
+                 
 
 jobs:
   greet:
@@ -11,6 +18,7 @@ jobs:
           run: echo "Hello Dost $USER"
        
   greet1:
+      needs: [greet]
       runs-on: ubuntu-latest
       steps:
         - name: Say hello to ubuntu
