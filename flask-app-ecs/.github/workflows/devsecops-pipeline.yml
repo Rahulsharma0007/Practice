@@ -1,0 +1,31 @@
+name: devsecops
+
+on:
+    workflow_dispatch:
+
+jobs:
+    code-quality:
+           uses: ./.github/workflows/code-check.yml
+    secrets-scan:
+           uses: ./.github/workflows/secrets-scan.yml
+    dependencies-scan:
+           uses: ./.github/workflows/dependencies-check.yml
+
+    docker-scan:
+           uses: ./.github/workflows/docker-scan.yml
+
+    build-push:
+           needs: [ code-quality, secrets-scan, dependencies-scan, docker-scan ]
+
+           uses: ./.github/workflows/build-push.yml
+           secrets: inherit
+    image-scan:
+           needs: [build-push]
+           uses: ./.github/workflows/image-scan.yml 
+           secrets: inherit
+           
+    Deploy:
+           needs: [image-scan]
+           uses: ./.github/workflows/deploy-to-server.yml 
+           secrets: inherit
+

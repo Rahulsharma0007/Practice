@@ -1,0 +1,23 @@
+name: dependencies check
+on:
+    workflow_call:
+
+jobs:
+    dependencies-check:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: code checkout
+              uses: actions/checkout@v4
+            - name: Set up Python
+              uses: actions/setup-python@v5
+              with:
+                python-version: '3.11'
+            - name: Install dependencies
+              run: pip install pip-audit
+            - name: Run pip-audit for vulnerabilities
+              run: pip-audit -r requirements.txt 
+             
+                 
+                
+           

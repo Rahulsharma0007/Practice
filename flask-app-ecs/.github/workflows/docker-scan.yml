@@ -1,0 +1,17 @@
+name: docker-scan
+
+on:
+    workflow_call:
+
+jobs:
+    docker-scan:
+        runs-on: ubuntu-latest
+        steps:
+            - name: code checkout
+              uses: actions/checkout@v4
+
+            - name: Lint Dockerfile
+      # Use the latest version from the GitHub Marketplace
+              uses: hadolint/hadolint-action@v3.1.0
+              with:
+                 dockerfile: Dockerfile

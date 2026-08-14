@@ -1,0 +1,28 @@
+name: code check
+
+on:
+ workflow_call: 
+jobs:
+  checking:
+   runs-on: ubuntu-latest
+   strategy:
+    fail-fast: false
+    matrix : 
+     python-version: [ "3.11", "3.12", "3.13" ]
+     
+   steps:
+    - name: checkout code
+      uses: actions/checkout@v4
+    - name: setup python ${{matrix.python-version}}
+      uses: actions/setup-python@v6
+      with:
+        python-version: ${{matrix.python-version}}
+    - name: Install linter
+      run: pip install flake8
+    - name: run linter
+      run: flake8 app.py
+    - name: Install SAST
+      run: pip install bandit
+    - name: SAST run
+      run: bandit -r app.py
+      
